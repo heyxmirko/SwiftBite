@@ -1,0 +1,11 @@
+lure-levels:
+  level1:
+    min-wait-time: 80
+    max-wait-time: 500
+  level2:
+    min-wait-time: 60
+    max-wait-time: 400
+  level3:
+    min-wait-time: 40
+    max-wait-time: 300
+  # Add more levels as needed
