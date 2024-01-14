@@ -11,7 +11,8 @@ public class FishingListener implements Listener {
     public FishingListener(SwiftBite plugin) {
         this.plugin = plugin;
     }
-
+    
+    @EventHandler
     public void onFish(PlayerFishEvent event) {
         if (event.getState() == PlayerFishEvent.State.FISHING) {
             int lureLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LURE);
