@@ -1,6 +1,7 @@
 package me.lukyn76.swiftbite;
 
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 
@@ -16,6 +17,8 @@ public class FishingListener implements Listener {
     public void onFish(PlayerFishEvent event) {
         if (event.getState() == PlayerFishEvent.State.FISHING) {
             int lureLevel = event.getPlayer().getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LURE);
+
+            if(lureLevel == 0) return;
 
             // Fetch configuration values
             int minWaitTime = plugin.getConfig().getInt("lure-levels.level" + lureLevel + ".min-wait-time", 100);
