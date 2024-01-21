@@ -1,6 +1,6 @@
 # SwiftBite
 
-SwiftBite changes the fishing mechanics with Customizable Lure Speeds. This plugin offers server admins control over fishing lure speeds, allowing for a personalized and engaging fishing experience. Fine-tune fishing to your liking and keep your players hooked! Download the latest build here: https://www.spigotmc.org/resources/swiftbite-fishing.114440/
+SwiftBite changes the fishing mechanics with Customizable Lure Speeds. This plugin offers server admins control over fishing lure speeds, allowing for a personalized and engaging fishing experience. Fine-tune fishing to your liking and keep your players hooked! Download the latest build [here](https://www.spigotmc.org/resources/swiftbite-fishing.114440/).
 
 ![SwiftBite Fishing](https://i.imgur.com/45HdisL.gif)
 
