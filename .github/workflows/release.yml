@@ -1,0 +1,107 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master  # or main, depending on your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+
+    - name: Build with Maven
+      run: mvn clean package
+
+    - name: Archive Production Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: plugin-jar
+        path: target/*.jar  # Adjust the path according to your build artifacts
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: plugin-jar
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          plugin-jar/*.jar
+          ${{ github.workspace }}/**/*  # Adjust as needed for additional files or specific paths
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      name: Build and Release
+
+on:
+  push:
+    branches:
+      - master  # or main, depending on your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+
+    - name: Build with Maven
+      run: mvn clean package
+
+    - name: Archive Production Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: plugin-jar
+        path: target/*.jar  # Adjust the path according to your build artifacts
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: plugin-jar
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          plugin-jar/*.jar
+          ${{ github.workspace }}/**/*  # Adjust as needed for additional files or specific paths
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Bump version and generate changelog
+    run: npx standard-version --release-as minor
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
